@@ -1,0 +1,5 @@
+*.pyc
+.idea
+migrations
+*.sqlite3
+static_pro
