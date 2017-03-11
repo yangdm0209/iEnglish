@@ -1,10 +1,21 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from testing import accounts
+from testing import views
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'iEnglish.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^accounts/login/$', accounts.login),
+    url(r'^accounts/logout/$', accounts.logout),
+    url(r'^accounts/register/$', accounts.register),
+    url(r'^accounts/forgot/$', accounts.forgot),
+
+    url(r'^$', views.main),
+    url(r'^test/(?P<level_id>[0-9]+)$', views.test),
 ]

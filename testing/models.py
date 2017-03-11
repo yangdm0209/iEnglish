@@ -10,6 +10,21 @@ from util.tools_method import AdminStorageToQiniu, get_word_info
 
 class Level(models.Model):
     name = models.CharField(max_length=64, verbose_name='name')
+    words = models.IntegerField(verbose_name='max words per paper', default=20)
+    image = models.FileField(upload_to="images/%Y/%m/%d", max_length=255, storage=AdminStorageToQiniu(),
+                             verbose_name='image', default="default.jpg")
+
+    @property
+    def get_image(self):
+        return self.image.name if HTTP_FLAG in self.image.name else (CDN_FILES_URL + self.image.name)
+
+    @property
+    def get_thumb(self):
+        return self.image.name if HTTP_FLAG in self.image.name else (
+                                                                        CDN_FILES_URL + self.image.name) + '?imageView2/2/w/48'
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Level'
@@ -18,6 +33,20 @@ class Level(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=64, verbose_name='name')
+    image = models.FileField(upload_to="images/%Y/%m/%d", max_length=255, storage=AdminStorageToQiniu(),
+                             verbose_name='image', default="default.jpg")
+
+    @property
+    def get_image(self):
+        return self.image.name if HTTP_FLAG in self.image.name else (CDN_FILES_URL + self.image.name)
+
+    @property
+    def get_thumb(self):
+        return self.image.name if HTTP_FLAG in self.image.name else (
+                                                                        CDN_FILES_URL + self.image.name) + '?imageView2/2/w/48'
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Category'
@@ -27,8 +56,8 @@ class Category(models.Model):
 class Word(models.Model):
     word = models.CharField(max_length=128, verbose_name='word')
     image = models.FileField(upload_to="images/%Y/%m/%d", max_length=255, storage=AdminStorageToQiniu(),
-                             verbose_name='图片', default="default.jpg")
-    audio = models.CharField(max_length=255, verbose_name="发音", default='')
+                             verbose_name='image', default="default.jpg")
+    audio = models.CharField(max_length=255, verbose_name="audio", default='')
     pronunciation = models.CharField(max_length=255, verbose_name='pronunciation', default='')
     definition = models.CharField(max_length=255, verbose_name='definition', default='')
 
