@@ -15,13 +15,19 @@
         <li class="circle center white-text">{{ i }}</li>
     </a>
     {% endfor %}
-    <a class="waves-effect waves-light btn blue" onclick="submit()">submit<i class="material-icons right">send</i></a>
+    <form method="post" style="display: inline-block">
+        {% csrf_token %}
+        <input name="data" id="data" class="hide"/>
+        <button class="btn waves-effect waves-light col s12" type="submit">submit<i
+                class="material-icons right">send</i></button>
+    </form>
 </ul>
 
 <div class="center">
     <div class="row center">
         <a id="prevBtn" class="waves-effect waves-light btn blue" onclick="prevItem()"><i class="material-icons left">skip_previous</i>prev</a>
-        <a class="waves-effect waves-light btn word orange" onclick="playAudio()"><span id="word">tiger</span><i class="material-icons right">play_arrow</i></a>
+        <a class="waves-effect waves-light btn word orange" onclick="playAudio()"><span id="word">tiger</span><i
+                class="material-icons right">play_arrow</i></a>
         <a id="nextBtn" class="waves-effect waves-light btn blue" onclick="nextItem()">next<i
                 class="material-icons right">skip_next</i></a>
     </div>
@@ -58,6 +64,9 @@
 <script>
     var data=JSON.parse('{{ data }}');
     console.log(data);
+
+
+
 </script>
 <script type="text/javascript" src="/static/js/test.js"></script>
 {% endblock %}

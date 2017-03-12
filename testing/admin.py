@@ -6,7 +6,7 @@ from django.contrib import admin
 # Register your models here.
 from django.utils.safestring import mark_safe
 
-from testing.models import Level, Category, Word
+from testing.models import Level, Category, Word, Paper
 
 
 @admin.register(Level)
@@ -70,3 +70,16 @@ class WordAdmin(admin.ModelAdmin):
     show_audio.short_description = 'audio'
 
 
+@admin.register(Paper)
+class PaperAdmin(admin.ModelAdmin):
+    list_display = ['user', 'level', 'score', 'time', 'created_at', 'show_question']
+    readonly_fields = ['user', 'level', 'score', 'time', 'created_at', 'questions']
+
+    def show_question(self, obj):
+        ret = 'Words:<ul>'
+        for item in obj.questions.all():
+            ret += '<li>%s  ---- %s</li>' % (item.word, item.get_result)
+        ret += '</ul>'
+        return mark_safe(ret)
+
+    show_question.short_description = 'questions'

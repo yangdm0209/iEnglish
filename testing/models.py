@@ -118,11 +118,20 @@ class Question(models.Model):
     result = models.IntegerField(choices=RESULT_TP, verbose_name='result')
     created_at = models.DateTimeField(verbose_name='CreateTime', default=timezone.now())
 
+    def __unicode__(self):
+        return self.word.word
+
+    @property
+    def get_result(self):
+        for item in self.RESULT_TP:
+            if item[0] == self.result:
+                return item[1]
+
 
 class Paper(models.Model):
     questions = models.ManyToManyField(Question, verbose_name='Questions', related_name='paper')
     user = models.ForeignKey(User, verbose_name='User')
     level = models.ForeignKey(Level, verbose_name='Level')
-    score = models.IntegerField(verbose_name='Score')
-    time = models.IntegerField(verbose_name='Finished in')
+    score = models.IntegerField(verbose_name='Score', default=0)
+    time = models.IntegerField(verbose_name='Finished in', default=0)
     created_at = models.DateTimeField(verbose_name='CreateTime', default=timezone.now())

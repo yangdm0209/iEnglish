@@ -24,6 +24,7 @@ function select(index) {
         }
     }
     beepAudio.play();
+    $('#data').val(JSON.stringify(data));
 }
 
 function update(){
