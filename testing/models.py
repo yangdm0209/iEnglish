@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
+import random
+
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.db import models
 from django.utils import timezone
 
@@ -85,8 +88,16 @@ class Word(models.Model):
         return super(Word, self).save(*args, **kwargs)
 
     @property
+    def make_ques(self):
+        images = [w.get_image for w in random.sample(Word.objects.filter(~Q(id=self.pk)), 4)]
+        index = random.randint(0, 3)
+        images[index] = self.get_image
+        return {'result': index, 'images': images}
+
+    @property
     def get_image(self):
-        return self.image.name if HTTP_FLAG in self.image.name else (CDN_FILES_URL + self.image.name)
+        return self.image.name if HTTP_FLAG in self.image.name else (
+                                                                        CDN_FILES_URL + self.image.name) + '?imageView2/1/w/280/h/280'
 
     @property
     def get_thumb(self):

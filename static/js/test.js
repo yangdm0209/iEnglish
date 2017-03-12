@@ -1,11 +1,12 @@
 var audio = $("#wordAudio")[0];
+var beepAudio = $("#beepAudio")[0];
 var prevBtn = $('#prevBtn');
 var nextBtn = $('#nextBtn');
 var answers = new Array($('#answer1'), $('#answer2'), $('#answer3'), $('#answer4'));
 var queIndex = $('.circle');
 var cur = 0;
 var total=data.length;
-$("#wordAudio").attr("src","http://media.shanbay.com/audio/us/tiger.mp3");
+
 
 function playAudio(){
     audio.play();
@@ -22,6 +23,7 @@ function select(index) {
             answers[i].removeClass('selected');
         }
     }
+    beepAudio.play();
 }
 
 function update(){
@@ -48,6 +50,16 @@ function update(){
 		}
     });
 
+    audio.pause();
+    audio.src = data[cur].audio;
+    $('#word').text(data[cur].word);
+    for (var i = 0; i < 4; i++){
+        answers[i].attr('src', data[cur].images.images[i])
+        answers[i].removeClass('selected');
+        if (i == data[cur].answer)
+            answers[i].addClass('selected');
+    }
+    audio.play();
 }
 
 function prevItem(){

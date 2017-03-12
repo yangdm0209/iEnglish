@@ -21,7 +21,7 @@
 <div class="center">
     <div class="row center">
         <a id="prevBtn" class="waves-effect waves-light btn blue" onclick="prevItem()"><i class="material-icons left">skip_previous</i>prev</a>
-        <a class="waves-effect waves-light btn word orange" onclick="playAudio()">tiger<i class="material-icons right">play_arrow</i></a>
+        <a class="waves-effect waves-light btn word orange" onclick="playAudio()"><span id="word">tiger</span><i class="material-icons right">play_arrow</i></a>
         <a id="nextBtn" class="waves-effect waves-light btn blue" onclick="nextItem()">next<i
                 class="material-icons right">skip_next</i></a>
     </div>
@@ -49,6 +49,9 @@
         </div>
 
     </div>
+    <audio id="beepAudio" src="/static/click.wav">
+        您的浏览器不支持 audio 标签。
+    </audio>
 </div>
 {% endblock %}
 {% block javascript %}
