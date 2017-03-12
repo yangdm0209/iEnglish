@@ -37,9 +37,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
-    list_display = ['word', 'show_image', 'show_audio', 'pronunciation', 'definition']
+    list_display = ['word', 'show_image', 'show_audio', 'pronunciation', 'definition', 'levels', 'categories']
     list_display_links = ['word']
-    fields = ['word', 'image']
+    fields = ['word', 'image', 'level', 'category']
 
     def show_image(self, obj):
         url = obj.get_thumb
@@ -52,5 +52,21 @@ class WordAdmin(admin.ModelAdmin):
         else:
             return 'Cannot get audio for this word, plz check the word!'
 
+    def levels(self, obj):
+        ret = 'Levels:<ul>'
+        for item in obj.level.all():
+            ret += '<li>%s</li>' % item.name
+        ret += '</ul>'
+        return mark_safe(ret)
+
+    def categories(self, obj):
+        ret = 'Categories:<ul>'
+        for item in obj.category.all():
+            ret += '<li>%s</li>' % item.name
+        ret += '</ul>'
+        return mark_safe(ret)
+
     show_image.short_description = 'image'
     show_audio.short_description = 'audio'
+
+

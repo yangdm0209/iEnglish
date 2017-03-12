@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^accounts/forgot/$', accounts.forgot),
 
     url(r'^$', views.main),
-    url(r'^test/(?P<level_id>[0-9]+)$', views.test),
+    url(r'^know/$', views.know),
+    url(r'^know/test/([0-9]+)/$', views.test),
 ]

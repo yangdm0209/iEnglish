@@ -3,8 +3,58 @@
 扬帆蓝海幼儿英语能力测试系统
 {% endblock %}
 
+{% block css %}
+
+{% endblock %}
+
 {% block content %}
-<H1> Start testing</H1>
-<H1> Start testing</H1>
-<H1> Start testing</H1>
+<ul class="item center">
+
+    {% for i in index %}
+    <a href="javascript:selItem({{ i }})">
+        <li class="circle center white-text">{{ i }}</li>
+    </a>
+    {% endfor %}
+    <a class="waves-effect waves-light btn blue" onclick="submit()">submit<i class="material-icons right">send</i></a>
+</ul>
+
+<div class="center">
+    <div class="row center">
+        <a id="prevBtn" class="waves-effect waves-light btn blue" onclick="prevItem()"><i class="material-icons left">skip_previous</i>prev</a>
+        <a class="waves-effect waves-light btn word orange" onclick="playAudio()">tiger<i class="material-icons right">play_arrow</i></a>
+        <a id="nextBtn" class="waves-effect waves-light btn blue" onclick="nextItem()">next<i
+                class="material-icons right">skip_next</i></a>
+    </div>
+    <audio id="wordAudio">
+        您的浏览器不支持 audio 标签。
+    </audio>
+    <div class="row">
+        <div style="width: 45%;display: inline">
+            <a href="javascript:select(0)"><img id="answer1" class="img-border selected"
+                                                src="http://cdn.xintu56.com/longzhuangzhuang/web/img/2017/03/12/1f97e1c88e2a426db9f5b156e8d6d1bd?imageView2/1/w/280/h/280"></a>
+        </div>
+        <div style="width: 45%;display: inline">
+            <a href="javascript:select(1)"><img id="answer2" class="img-border"
+                                                src="http://cdn.xintu56.com/longzhuangzhuang/web/img/2017/03/12/1f97e1c88e2a426db9f5b156e8d6d1bd?imageView2/1/w/280/h/280"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div style="width: 45%;display: inline">
+            <a href="javascript:select(2)"><img id="answer3" class="img-border"
+                                                src="http://cdn.xintu56.com/longzhuangzhuang/web/img/2017/03/12/1f97e1c88e2a426db9f5b156e8d6d1bd?imageView2/1/w/280/h/280"></a>
+        </div>
+        <div style="width: 45%;display: inline">
+            <a href="javascript:select(3)"><img id="answer4" class="img-border"
+                                                src="http://cdn.xintu56.com/longzhuangzhuang/web/img/2017/03/12/1f97e1c88e2a426db9f5b156e8d6d1bd?imageView2/1/w/280/h/280"></a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+    var data=JSON.parse('{{ data }}');
+    console.log(data);
+</script>
+<script type="text/javascript" src="/static/js/test.js"></script>
 {% endblock %}

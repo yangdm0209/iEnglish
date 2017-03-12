@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
+
 from util.constants import CDN_FILES_URL, HTTP_FLAG
 from util.tools_method import AdminStorageToQiniu, get_word_info
 
@@ -16,12 +18,21 @@ class Level(models.Model):
 
     @property
     def get_image(self):
-        return self.image.name if HTTP_FLAG in self.image.name else (CDN_FILES_URL + self.image.name)
+        return self.image.name if HTTP_FLAG in self.image.name else (
+                                                                        CDN_FILES_URL + self.image.name) + '?imageView2/1/w/280/h/180'
 
     @property
     def get_thumb(self):
         return self.image.name if HTTP_FLAG in self.image.name else (
                                                                         CDN_FILES_URL + self.image.name) + '?imageView2/2/w/48'
+
+    @property
+    def total_word(self):
+        return self.word.all().count()
+
+    @property
+    def total_test(self):
+        return Paper.objects.filter(level=self.pk).count()
 
     def __unicode__(self):
         return self.name
@@ -60,6 +71,8 @@ class Word(models.Model):
     audio = models.CharField(max_length=255, verbose_name="audio", default='')
     pronunciation = models.CharField(max_length=255, verbose_name='pronunciation', default='')
     definition = models.CharField(max_length=255, verbose_name='definition', default='')
+    level = models.ManyToManyField(Level, verbose_name='level', related_name='word')
+    category = models.ManyToManyField(Category, verbose_name='category', related_name='word')
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -86,3 +99,19 @@ class Word(models.Model):
     class Meta:
         verbose_name_plural = 'Word'
         verbose_name = 'Word'
+
+
+class Question(models.Model):
+    RESULT_TP = ((0, 'wrong'), (1, 'right'))
+    word = models.ForeignKey(Word, verbose_name='Word')
+    result = models.IntegerField(choices=RESULT_TP, verbose_name='result')
+    created_at = models.DateTimeField(verbose_name='CreateTime', default=timezone.now())
+
+
+class Paper(models.Model):
+    questions = models.ManyToManyField(Question, verbose_name='Questions', related_name='paper')
+    user = models.ForeignKey(User, verbose_name='User')
+    level = models.ForeignKey(Level, verbose_name='Level')
+    score = models.IntegerField(verbose_name='Score')
+    time = models.IntegerField(verbose_name='Finished in')
+    created_at = models.DateTimeField(verbose_name='CreateTime', default=timezone.now())

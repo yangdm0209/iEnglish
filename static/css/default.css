@@ -27,3 +27,52 @@ copyright {
     color: rgba(255,255,255,0.8);
     background-color: rgba(51,51,51,0.08);
 }
+span.label.new {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #26a69a;
+    border-radius: 2px;
+}
+span.label {
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: inherit;
+    color: #757575;
+    position: absolute;
+    right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0;
+    background-color: #26a69a;
+    border-radius: 50%;
+}
+
+.item li{
+    width:25px;
+    floag:left;
+    list-style:none;
+    display:inline-block;
+}
+
+.word {
+    text-transform: Lowercase;
+}
+
+.img-border {
+    border: 4px;
+	border-style: solid;
+	border-color: #aaaaaa;
+}
+.selected {
+	border-color: #b71c1c;
+}
