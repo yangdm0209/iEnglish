@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}参与历史{% endblock %}
+{% block content %}
+<H3 class="center">共{{ count }}人次参与《{{ level }}》测试</H3>
+
+<table class="striped">
+    <thead>
+    <tr>
+        <th data-field="username">Username</th>
+        <th data-field="score">Score</th>
+        <th data-field="date">Date</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for i in list %}
+    <tr>
+        <td><a href="/know/test/report/{{ i.id }}">{{ i.user }}</td>
+        <td>{{ i.score }}%</td>
+        <td>{{ i.date }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

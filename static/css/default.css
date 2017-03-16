@@ -48,6 +48,9 @@ span.label {
     box-sizing: border-box;
 }
 
+span.label.new a{
+    color: white;
+}
 .circle {
     width: 25px;
     height: 25px;

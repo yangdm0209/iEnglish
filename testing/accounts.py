@@ -30,8 +30,8 @@ def login(request):
 
 
 def logout(request):
-    return render_to_response('test.html',
-                              RequestContext(request, {}))
+    auth.logout(request)
+    return HttpResponseRedirect('/accounts/login')
 
 
 def register(request):

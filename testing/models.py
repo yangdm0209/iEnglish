@@ -127,6 +127,22 @@ class Question(models.Model):
             if item[0] == self.result:
                 return item[1]
 
+    @property
+    def image(self):
+        return self.word.get_image
+
+    @property
+    def audio(self):
+        return self.word.audio
+
+    @property
+    def name(self):
+        return self.word.word
+
+    @property
+    def categories(self):
+        return [c.name for c in self.word.category.all()]
+
 
 class Paper(models.Model):
     questions = models.ManyToManyField(Question, verbose_name='Questions', related_name='paper')
@@ -135,3 +151,15 @@ class Paper(models.Model):
     score = models.IntegerField(verbose_name='Score', default=0)
     time = models.IntegerField(verbose_name='Finished in', default=0)
     created_at = models.DateTimeField(verbose_name='CreateTime', default=timezone.now())
+
+    @property
+    def date(self):
+        return self.created_at.date()
+
+    @property
+    def username(self):
+        return self.user.username
+
+    @property
+    def levelname(self):
+        return self.level.name
