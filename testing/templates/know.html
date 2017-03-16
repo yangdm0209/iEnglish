@@ -11,8 +11,8 @@
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
-                    <a href="/know/test/{{ l.id }}/"><img src="{{ l.get_image }}" /></a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red center" href="/know/test/{{ l.id }}/">GO</a>
+                    <a href="{% if l.total_word > 0 %}/know/test/{{ l.id }}{% endif %}/"><img src="{{ l.get_image }}" /></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red center" href="{% if l.total_word > 0 %}/know/test/{{ l.id }}{% endif %}/">GO</a>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
