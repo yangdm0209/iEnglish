@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}template title{% endblock %}</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/bootstrapStyle.css">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="/static/small-logo.png" width="48" height="48" style="display: inline-block; margin-top: -8px;">&nbsp;扬帆蓝海国际教育
+            </a>
+        </div>
+    </div>
+</nav>
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="/accounts/logout/">退出登录</a></li>
+    <li><a href="/admin/">Admin</a></li>
+</ul>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">
+            扬帆蓝海
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li {% if know_active %}class="active" {% endif %}><a href="/know/">识词</a></li>
+            <!--<li {% if fill_active %}class="active"{% endif %}><a href="/fill/">填词</a></li>-->
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{% if user.is_authenticated %}Hello,
+                {{ user.username }}{% endif %}<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li {% if know_active %}class="active" {% endif %}><a href="/know/">识词</a></li>
+            <!--<li {% if fill_active %}class="active"{% endif %}><a href="/fill/">填词</a></li>-->
+            <li class="divider"></li>
+            <li><a href="/accounts/logout/">退出登录</a></li>
+            <li><a href="/admin/">Admin</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<main>
+    <div class="container">
+        {% block content %}template content{% endblock %}
+    </div>
+</main>
+<br/><br/>
+<footer class="page-footer orange">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">扬帆蓝海国际教育</h5>
+                <p class="grey-text text-lighten-4">
+                    扬帆蓝海国际教育作为阳光新语的国际部，秉承着和总校区一样的宗旨，综合教育培养为一体，打造高品质教育课程，致力于通过最先进的在线教育资源的全球整合，最大程度地激发和融汇东西方智慧，培养富有想象力、创造力、沟通力和领导力的心智模式，理解西方人文与科技，用英语打开通往国际知识殿堂的一扇门。</p>
+
+
+            </div>
+            <div class="col l6 s12">
+                <h5 class="white-text">联系我们</h5>
+                <ul class="white-text">
+                    <li>服务热线: 010-80259537、010-80256858</li>
+                    <li>联系电话: 13716527286</li>
+                    <li>联系地址: 北京市大兴区绿地中央广场D座1011</li>
+                    <li>邮箱地址: ygxy123456@163.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container center">
+            Copyright ©2017 扬帆蓝海 All Rights Reserved
+        </div>
+    </div>
+</footer>
+</body>
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block javascript %}{% endblock %}
+</html>
