@@ -16,8 +16,6 @@ from testing.models import Level, Paper, Question, Word
 
 def main(request):
     return HttpResponseRedirect('/know/')
-    # return render_to_response('main.html',
-    #                           RequestContext(request))
 
 
 @login_required
