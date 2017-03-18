@@ -100,7 +100,7 @@ def report(request, paperid):
     except:
         return render_to_response('error.html', RequestContext(request, {'error': '您所查找的测试结果不存在'}))
 
-
+@login_required
 def list(request, levelid):
     try:
         level = Level.objects.get(id=levelid)
