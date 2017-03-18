@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block css %}
-
 {% endblock %}
 
 {% block content %}
@@ -18,18 +17,18 @@
     <form method="post" style="display: inline-block">
         {% csrf_token %}
         <input name="data" id="data" class="hide"/>
-        <button class="btn waves-effect waves-light col s12" type="submit">submit<i
-                class="material-icons right">send</i></button>
+        <button class="btn waves-effect waves-light col s12" type="submit">submit
+            <i class="icon iconfont">&#xe747;</i></button>
     </form>
 </ul>
 
 <div class="center">
     <div class="row center">
-        <a id="prevBtn" class="waves-effect waves-light btn blue" onclick="prevItem()"><i class="material-icons left">skip_previous</i>prev</a>
-        <a class="waves-effect waves-light btn word orange" onclick="playAudio()"><span id="word">tiger</span><i
-                class="material-icons right">play_arrow</i></a>
-        <a id="nextBtn" class="waves-effect waves-light btn blue" onclick="nextItem()">next<i
-                class="material-icons right">skip_next</i></a>
+        <a id="prevBtn" class="waves-effect waves-light btn blue" onclick="prevItem()"><i class="icon iconfont">&#xe679;</i>&nbsp;prev</a>
+        <a class="waves-effect waves-light btn word orange" onclick="playAudio()"><span id="word">tiger</span>
+                &nbsp;<i class="icon iconfont">&#xe66a;</i></a>
+        <a id="nextBtn" class="waves-effect waves-light btn blue" onclick="nextItem()">next&nbsp;
+                <i class="icon iconfont">&#xe6a3;</i></a>
     </div>
     <audio id="wordAudio">
         您的浏览器不支持 audio 标签。
@@ -55,7 +54,7 @@
         </div>
 
     </div>
-    <audio id="beepAudio" src="/static/click.wav">
+    <audio id="beepAudio" src="/static/click.mp3">
         您的浏览器不支持 audio 标签。
     </audio>
 </div>

@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^know/$', views.know),
     url(r'^know/test/([0-9]+)/$', views.test),
     url(r'^know/test/([0-9]+)/list$', views.list),
-    url(r'^know/test/report/([0-9]+)$', views.report),
+    url(r'^know/test/report/([0-9]+)/$', views.report),
 ]
