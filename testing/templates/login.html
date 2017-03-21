@@ -12,6 +12,7 @@
 	body {
 	    height: 100%;
 	}
+
     .center-form {
         width: 440px;
         display: inline-block;
@@ -20,9 +21,20 @@
         border: 1px solid gray;
         border-radius: 5px;
     }
+    @media screen and (max-width:500px)
+    {
+        .center-form {
+            width: 320px;
+            display: inline-block;
+            margin-top: 70px;
+            padding: 25px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+    }
 
     .one-line{
-        margin-left: auto;`
+        margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
     }
@@ -34,7 +46,7 @@
 </head>
 <body class="blue">
 <div id="login-page" class="row center">
-    <div class="center-form white z-depth-2">
+    <div class="center-form  white z-depth-2">
         <form method="post">
             {% csrf_token %}
             <div class="one-line">

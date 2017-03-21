@@ -54,9 +54,9 @@
     </audio>
     <div class="row">
         {% for word in words %}
-        <div class="col s6 l3 center margin-top-20">
+        <div class="col s6 m4 l3 center margin-top-20">
             <img src="{{ word.image }}"/>
-            <a class="waves-effect waves-light btn word {% if word.result %} green {% else %} red {% endif %}" onclick="playAudio('{{ word.audio }}')">
+            <a class="waves-effect waves-light btn word {% if word.result %} green {% else %} red {% endif %}" style="width:100%" onclick="playAudio('{{ word.audio }}')">
                 <span>{{ word.name }}</span>&nbsp;<i class="icon iconfont">&#xe66a;</i>
             </a>
         </div>
