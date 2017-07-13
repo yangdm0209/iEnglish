@@ -70,7 +70,16 @@ def test(request, level_id):
             paper.save()
             return HttpResponseRedirect('/know/test/report/%d' % paper.id)
 
+def deco(func):
+    def _deco(request, *args, **kwargs):
+        print "request paper", args
+        # ret = func(a, b)
+        # print("  after myfunc() called. result: %s" % ret)
+        return func(request, *args, **kwargs)
 
+    return _deco
+
+@deco
 def report(request, paperid):
     try:
         data = {}

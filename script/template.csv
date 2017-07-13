@@ -1,0 +1,4 @@
+单词,级别（多个级别用|分割）,分类（多个分类用|分割）,图片名字
+tiger,level1|level2,动物,tiger.png
+apple,level1,水果,apple.png
+red,level1,颜色,red.png
